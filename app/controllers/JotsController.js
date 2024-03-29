@@ -9,6 +9,7 @@ export class JotsController {
     AppState.on('jots', this.drawJots)
     AppState.on('activeJot', this.drawActiveJot);
     jotsService.loadJots()
+    // this.drawCount()
   }
 
   drawJots() {
@@ -25,6 +26,10 @@ export class JotsController {
       setHTML('activeJot', AppState.activeJot.activeJotTemplate)
     }
   }
+
+  // drawCount() {
+  //   setHTML('jot-amount', AppState.jots.length)
+  // }
 
   createJot() {
     event.preventDefault()
