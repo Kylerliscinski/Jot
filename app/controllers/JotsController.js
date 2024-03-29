@@ -1,7 +1,44 @@
+import { AppState } from "../AppState.js";
+import { jotsService } from "../services/JotsService.js";
+import { getFormData } from "../utils/FormHandler.js";
+import { setHTML } from "../utils/Writer.js";
 
 
 export class JotsController {
   constructor() {
-    console.log('Whats up');
+    AppState.on('jots', this.drawJots)
+    // AppState.on('activeJot', this.drawActiveJot);
   }
+
+  drawJots() {
+    let jotContent = ''
+    AppState.jots.forEach(jot => jotContent += jot.jotSidebarTemplate)
+    setHTML('jot-container', jotContent)
+  }
+
+  drawActiveJot() {
+    const jot = AppState.activeJot
+    if (jot == null) {
+      setHTML('activeJot', '')
+    } else {
+      setHTML('activeJot', AppState.activeJot.activeJotTemplate)
+    }
+  }
+
+  createJot() {
+    event.preventDefault()
+    console.log('creating jot');
+    const form = event.target
+    const jotFormData = getFormData(form)
+    console.log('here is the data', jotFormData);
+    jotsService.createJot(jotFormData)
+    // @ts-ignore
+    form.reset()
+  }
+
+  setActiveJot(jotId) {
+    console.log('setting active jot', jotId);
+    jotsService.setActiveJot(jotId)
+  }
+
 }

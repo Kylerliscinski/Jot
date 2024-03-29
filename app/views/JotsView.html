@@ -1,1 +1,43 @@
-<h1>Jots</h1>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <h3 class="text-white">D O T</h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+      aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">D O T - My Notes</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <div class="offcanvas-body">
+        <section id="jot-container" class="navbar-nav justify-content-between">
+          <!-- //SECTION This is where the notes will go. -->
+        </section>
+
+        <form onsubmit="app.JotsController.createJot()" class="row mt-3" role="search">
+          <!-- //SECTION - This is where users can add notes -->
+          <div class="col-12">
+            <input class="form-control" required minlength="3" maxlength="15" type="text" name="title" id="title"
+              placeholder="Create Note Title..." aria-label="">
+          </div>
+          <div class="col-6 p-3">
+            <input class="form-control w-25" required type="color" name="color" id="color">
+          </div>
+          <div class="col-6 text-end p-3">
+            <button class="btn btn-outline-primary text-white" type="submit"><i class="mdi mdi-plus-circle"></i>
+              Add Note</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="container justify-content-center align-items-start p-3 border border-black rounded">
+    <!-- //SECTION - This is where you type in your note -->
+  </section>
+
+</nav>
