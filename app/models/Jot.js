@@ -1,3 +1,4 @@
+import { AppState } from "../AppState.js"
 import { generateId } from "../utils/GenerateId.js"
 
 export class Jot {
@@ -13,6 +14,7 @@ export class Jot {
 
   get jotSidebarTemplate() {
     return `
+    ${this.jotCount}
     <div onclick="app.JotsController.setActiveJot('${this.id}')" class="bg bg-dark border border-light rounded shadow text-white p-2 selectable" role="button">
       <h5 style="color: ${this.color};" class="d-inline">${this.title}</h5>
       <p class="d-inline float-end">${this.CreatedDate}</p>
@@ -35,6 +37,16 @@ export class Jot {
       <button onclick="app.JotsController.updateJot()" class="btn btn-success text-white my-1">Save</button>
       <button onclick="app.JotsController.destroyJot()" class="btn btn-danger fs-5 float-end my-1"><i class="mdi mdi-delete-circle fs-5"></i></button>
     </form>
+    `
+  }
+
+  get jotCount() {
+    let jotAmount = AppState.jots.length
+    console.log(jotAmount);
+    return `
+    <div>
+      <div class="">Note Amount: ${jotAmount}</div>
+    </div>
     `
   }
 

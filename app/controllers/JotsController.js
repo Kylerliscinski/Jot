@@ -48,6 +48,7 @@ export class JotsController {
     //@ts-ignore
     const textFromTextArea = jotElem.value
     jotsService.updateJot(textFromTextArea)
+    window.alert("Note Saved!")
   }
 
   destroyJot() {
