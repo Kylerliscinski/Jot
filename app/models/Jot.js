@@ -13,7 +13,7 @@ export class Jot {
 
   get jotSidebarTemplate() {
     return `
-    <div onclick="app.JotsController.setActiveJot(${this.id})" class="bg bg-dark border border-light rounded shadow text-white p-2 selectable" role="button">
+    <div onclick="app.JotsController.setActiveJot('${this.id}')" class="bg bg-dark border border-light rounded shadow text-white p-2 selectable" role="button">
       <h5 style="color: ${this.color};" class="d-inline">${this.title}</h5>
       <p class="d-inline float-end">${this.CreatedDate}</p>
     </div>
@@ -22,20 +22,19 @@ export class Jot {
 
   get activeJotTemplate() {
     return `
-    <div class="text-white px-5">
-       <h4>${this.title}</h4>
-       <h5>${this.author}</h5>
-       <p>${this.createdAt}</p>
-       <p>${this.lastViewed}</p>
+    <div class="text-white pb-3">
+      <h5>${this.author}</h5>
+      <h5 style="color:${this.color}">${this.title}</h5>
+      <p>${this.CreatedDatAndTime}</p>
+      <p>${this.LastViewedDateAndTime}</p>
+      <hr/>
     </div>
-    <form onsubmit="app.JotsController.submitJot()" class="text-end">
-      <textarea class="form-control" name="body" id="jot-body" cols="100" rows="31"
+    <form" class="text-end">
+      <textarea class="form-control px-3" name="body" id="jot-body" cols="100" rows="23"
       placeholder="Write your thoughts here...">${this.body}</textarea>
-      <button class="btn btn-success text-white">Save</button>
+      <button onclick="app.JotsController.updateJot()" class="btn btn-success text-white my-1">Save</button>
+      <button onclick="app.JotsController.destroyJot()" class="btn btn-danger fs-5 float-end my-1"><i class="mdi mdi-delete-circle fs-5"></i></button>
     </form>
-    <div class="px-3">
-      <button class="btn btn-danger fs-5"><i class="mdi mdi-delete-circle fs-5"></i></button>
-    </div>
     `
   }
 
@@ -45,6 +44,10 @@ export class Jot {
 
   get CreatedTime() {
     return this.createdAt.toLocaleTimeString()
+  }
+
+  get CreatedDatAndTime() {
+    return this.createdAt.toLocaleString()
   }
 
   get LastViewedDateAndTime() {

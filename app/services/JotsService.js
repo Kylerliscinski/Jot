@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js";
 import { Jot } from "../models/Jot.js";
+import { loadState, saveState } from "../utils/Store.js";
 
 
 class JotsService {
@@ -8,20 +9,20 @@ class JotsService {
     const newJot = new Jot(jotData)
     console.log(newJot);
     AppState.jots.push(newJot)
-    //save here
+    this.saveJots()
   }
 
   setActiveJot(jotId) {
     const foundJot = AppState.jots.find(jot => jot.id == jotId)
     foundJot.lastViewed = new Date()
-    //save here
+    this.saveJots()
     AppState.activeJot = foundJot
   }
 
   updateJot(newJotBody) {
     const jot = AppState.activeJot
     jot.body = newJotBody
-    //save here
+    this.saveJots()
   }
 
   destroyJot() {
@@ -32,13 +33,17 @@ class JotsService {
       return
     }
     AppState.jots.splice(indexOfJotToRemove, 1)
-    //save here
+    this.saveJots()
   }
 
   saveJots() {
-
+    saveState('jots', AppState.jots)
   }
 
+  loadJots() {
+    const jotsFromStorage = loadState('jots', [Jot])
+    AppState.jots = jotsFromStorage
+  }
 }
 
 export const jotsService = new JotsService()

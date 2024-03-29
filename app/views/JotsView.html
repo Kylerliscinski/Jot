@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <h3 class="text-white">D O T</h3>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
@@ -20,6 +20,10 @@
         <form onsubmit="app.JotsController.createJot()" class="row mt-3" role="search">
           <!-- //SECTION - This is where users can add notes -->
           <div class="col-12">
+            <input class="form-control mb-2" required minlength="3" maxlength="15" type="text" name="author" id="author"
+              placeholder="Enter Your Name..." aria-label="">
+          </div>
+          <div class="col-12">
             <input class="form-control" required minlength="3" maxlength="15" type="text" name="title" id="title"
               placeholder="Create Note Title..." aria-label="">
           </div>
@@ -35,9 +39,8 @@
 
     </div>
   </div>
-
-  <section class="container justify-content-center align-items-start p-3 border border-black rounded">
-    <!-- //SECTION - This is where you type in your note -->
-  </section>
-
 </nav>
+
+<section id="activeJot" class="container justify-content-center align-items-start p-3 border border-black rounded w-50">
+  <!-- //SECTION - This is where you type in your note -->
+</section>

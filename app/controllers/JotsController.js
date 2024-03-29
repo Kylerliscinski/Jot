@@ -7,7 +7,8 @@ import { setHTML } from "../utils/Writer.js";
 export class JotsController {
   constructor() {
     AppState.on('jots', this.drawJots)
-    // AppState.on('activeJot', this.drawActiveJot);
+    AppState.on('activeJot', this.drawActiveJot);
+    jotsService.loadJots()
   }
 
   drawJots() {
@@ -42,10 +43,18 @@ export class JotsController {
   }
 
   updateJot() {
-    const textAreaElem = event.target
-    // @ts-ignore
-    const textContentFromForm = textAreaElem.value
-    jotsService.updateJot(textContentFromForm)
+    const jotElem = document.getElementById('jot-body')
+    console.log(jotElem);
+    //@ts-ignore
+    const textFromTextArea = jotElem.value
+    jotsService.updateJot(textFromTextArea)
   }
 
+  destroyJot() {
+    const jotToDestroy = window.confirm("Are you sure you want to delete this jot?")
+    if (jotToDestroy == false) {
+      return
+    }
+    jotsService.destroyJot()
+  }
 }
