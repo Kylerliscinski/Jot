@@ -23,6 +23,22 @@ class JotsService {
     jot.body = newJotBody
     //save here
   }
+
+  destroyJot() {
+    const jotId = AppState.activeJot.id
+    AppState.activeJot = null
+    const indexOfJotToRemove = AppState.jots.findIndex(jot => jot.id == jotId)
+    if (indexOfJotToRemove == -1) {
+      return
+    }
+    AppState.jots.splice(indexOfJotToRemove, 1)
+    //save here
+  }
+
+  saveJots() {
+
+  }
+
 }
 
 export const jotsService = new JotsService()

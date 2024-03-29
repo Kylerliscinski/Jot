@@ -41,4 +41,11 @@ export class JotsController {
     jotsService.setActiveJot(jotId)
   }
 
+  updateJot() {
+    const textAreaElem = event.target
+    // @ts-ignore
+    const textContentFromForm = textAreaElem.value
+    jotsService.updateJot(textContentFromForm)
+  }
+
 }
