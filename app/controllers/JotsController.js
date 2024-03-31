@@ -28,6 +28,8 @@ export class JotsController {
   }
 
   // drawCount() {
+  //   let jotAmount = ''
+  //   AppState.jots.forEach(jot => AppState.jots.length == )
   //   setHTML('jot-amount', AppState.jots.length)
   // }
 
