@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js";
+import { Jot } from "../models/Jot.js";
 import { jotsService } from "../services/JotsService.js";
 import { getFormData } from "../utils/FormHandler.js";
 import { setHTML } from "../utils/Writer.js";
@@ -9,7 +10,7 @@ export class JotsController {
     AppState.on('jots', this.drawJots)
     AppState.on('activeJot', this.drawActiveJot);
     jotsService.loadJots()
-    // this.drawCount()
+    this.drawCount()
   }
 
   drawJots() {
@@ -27,11 +28,9 @@ export class JotsController {
     }
   }
 
-  // drawCount() {
-  //   let jotAmount = ''
-  //   AppState.jots.forEach(jot => AppState.jots.length == )
-  //   setHTML('jot-amount', AppState.jots.length)
-  // }
+  drawCount() {
+    setHTML('jot-amount', Jot.jotCount)
+  }
 
   createJot() {
     event.preventDefault()

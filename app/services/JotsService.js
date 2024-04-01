@@ -14,7 +14,6 @@ class JotsService {
 
   setActiveJot(jotId) {
     const foundJot = AppState.jots.find(jot => jot.id == jotId)
-    foundJot.lastViewed = new Date()
     this.saveJots()
     AppState.activeJot = foundJot
   }
@@ -22,6 +21,7 @@ class JotsService {
   updateJot(newJotBody) {
     const jot = AppState.activeJot
     jot.body = newJotBody
+    jot.lastViewed = new Date()
     this.saveJots()
   }
 

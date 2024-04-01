@@ -14,7 +14,6 @@ export class Jot {
 
   get jotSidebarTemplate() {
     return `
-    ${this.jotCount} 
     <div onclick="app.JotsController.setActiveJot('${this.id}')" class="bg bg-dark border border-light rounded shadow text-white p-2 selectable" role="button">
       <h5 style="color: ${this.color};" class="d-inline">${this.title}</h5>
       <p class="d-inline float-end">${this.CreatedDate}</p>
@@ -40,7 +39,7 @@ export class Jot {
     `
   }
 
-  get jotCount() {
+  static get jotCount() { //Static is able to select one instance of "jots"
     let jotAmount = AppState.jots.length
     console.log(jotAmount);
     return `
